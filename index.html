@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Piedra Papel o Tijeras</title>
+</head>
+<body>
+    <script>
+        function computerPlay() {
+            let randomNumber = Math.floor(Math.random() * 3);
+            if(randomNumber == 0){
+                return 'ROCK';
+            }else if(randomNumber == 1){
+                return 'PAPER';
+            }else{
+                return 'SCISSORS';
+            }
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            let juega = prompt("Rock, paper or scissors?");
+            let eleccion = juega.toUpperCase();
+
+            computerSelection = computerPlay();
+            playerSelection = eleccion;
+            if(playerSelection == computerSelection){
+                alert("it's a tie!");
+            }else if(playerSelection == 'ROCK'){
+                alert((computerSelection == 'SCISSORS') ? "You win! Rock beats Scissors." : "You lose! Paper beats Rock.");
+            }else if(playerSelection == 'PAPER'){
+                alert((computerSelection == 'SCISSORS') ? "You lose! Scissors beats paper." : "You win! Paper beats Rock.");
+            }else if(playerSelection == 'SCISSORS'){
+                alert((computerSelection == 'PAPER') ? "You win! Scissors beats Paper." : "You lose! Paper beats Rock.");
+            }else{
+                alert("Enter a valid word");
+            }
+        }
+
+        function game(){
+            let playerScore = 0;
+            let computerScore = 0;
+            let round = 0;
+
+            while (round < 5){
+                playRound();
+                if()
+
+                round++;
+            }
+        }
+       
+    </script>
+</body>
+</html>
