@@ -20,36 +20,48 @@
         }
 
         function playRound(playerSelection, computerSelection) {
-            let juega = prompt("Rock, paper or scissors?");
-            let eleccion = juega.toUpperCase();
 
-            computerSelection = computerPlay();
-            playerSelection = eleccion;
             if(playerSelection == computerSelection){
-                alert("it's a tie!");
+                return "it's a tie!";
             }else if(playerSelection == 'ROCK'){
-                alert((computerSelection == 'SCISSORS') ? "You win! Rock beats Scissors." : "You lose! Paper beats Rock.");
+                return (computerSelection == 'SCISSORS') ? "You win! Rock beats Scissors." : "You lose! Paper beats Rock.";
             }else if(playerSelection == 'PAPER'){
-                alert((computerSelection == 'SCISSORS') ? "You lose! Scissors beats paper." : "You win! Paper beats Rock.");
+                return (computerSelection == 'SCISSORS') ? "You lose! Scissors beats paper." : "You win! Paper beats Rock.";
             }else if(playerSelection == 'SCISSORS'){
-                alert((computerSelection == 'PAPER') ? "You win! Scissors beats Paper." : "You lose! Paper beats Rock.");
+                return (computerSelection == 'PAPER') ? "You win! Scissors beats Paper." : "You lose! Paper beats Rock.";
             }else{
-                alert("Enter a valid word");
+                return "Enter a valid word";
             }
         }
+
+    
 
         function game(){
+            let round = 0;
             let playerScore = 0;
             let computerScore = 0;
-            let round = 0;
 
-            while (round < 5){
-                playRound();
-                if()
+            while(round < 5){
+            
+            let jugada = prompt("Que agarras?").toUpperCase();
+            let bot = computerPlay();
+            let result = playRound(jugada, bot);
+            alert(result);
 
-                round++;
+            let str = result.slice(4,7);
+            if (str == "win"){
+                playerScore++;
+            }else if(str == "los"){
+                computerScore++;
+            }
+
+            alert(computerScore);
+            alert(playerScore);
+            round++;
             }
         }
+
+
        
     </script>
 </body>
