@@ -39,11 +39,11 @@
         function game(){
             let round = 0;
             let playerScore = 0;
-            let computerScore = 0;
-
+            let computerScore = 0;         
+            
             while(round < 5){
             
-            let jugada = prompt("Que agarras?").toUpperCase();
+            let jugada = prompt("Rock, Paper or Scissors?").toUpperCase();
             let bot = computerPlay();
             let result = playRound(jugada, bot);
             alert(result);
@@ -55,11 +55,21 @@
                 computerScore++;
             }
 
-            alert(computerScore);
-            alert(playerScore);
+            alert(`Your score: ${playerScore} \n Bot's score: ${computerScore}`);
+
             round++;
             }
+            
+            if(playerScore > computerScore){
+                alert("You've won the game!");
+            }else if(computerScore > playerScore){
+                alert("Game over!");
+            }else{
+                alert("There's no winner, try again.");
+            }
         }
+
+        game();
 
 
        
