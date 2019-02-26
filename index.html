@@ -7,69 +7,53 @@
     <title>Piedra Papel o Tijeras</title>
 </head>
 <body>
+    <div>
+        <center>
+            <button id="rock" onclick="playRound(0)">ROCK</button>
+            <button id="paper" onclick="playRound(1)">PAPER</button>
+            <button id="scissors" onclick="playRound(2)">SCISSORS</button>
+        </center>
+    </div>
+    <div id="resultado">
+
+    </div>
+    <div>
+        <center>
+            <h3 id="h3" style="font-family: Arial, Helvetica, sans-serif; color: blue">
+
+            </h3>
+    </div>
+    <div>
+        <h3 id="puntaje">
+
+        </h3>
+    </div>
     <script>
-        function computerPlay() {
-            let randomNumber = Math.floor(Math.random() * 3);
-            if(randomNumber == 0){
-                return 'ROCK';
-            }else if(randomNumber == 1){
-                return 'PAPER';
-            }else{
-                return 'SCISSORS';
-            }
+
+        let div = document.getElementById('resultado');
+        let resultado = document.getElementById('h3');
+
+        let You = 0;
+        let bot = 0;
+
+        let 
+        function playRound(obj) {
+            let objetos = ["Rock", "Paper", "Scissors"];
+
+            let show = [
+                ["It's a tie!","You lose! Paper beats Rock","You win! Rock beats Scissors"],
+                ["You win! Paper beats Rock","It's a tie!","You lose! Scissors beats Paper"],
+                ["You lose! Rock beats Scissors", "You win! Scissors beats Paper","It's a tie!"]
+            ];
+
+            
+           
+            let enemigo = Math.floor(Math.random()*3);
+
+            resultado.textContent =  show[obj][enemigo];
         }
 
-        function playRound(playerSelection, computerSelection) {
 
-            if(playerSelection == computerSelection){
-                return "it's a tie!";
-            }else if(playerSelection == 'ROCK'){
-                return (computerSelection == 'SCISSORS') ? "You win! Rock beats Scissors." : "You lose! Paper beats Rock.";
-            }else if(playerSelection == 'PAPER'){
-                return (computerSelection == 'SCISSORS') ? "You lose! Scissors beats paper." : "You win! Paper beats Rock.";
-            }else if(playerSelection == 'SCISSORS'){
-                return (computerSelection == 'PAPER') ? "You win! Scissors beats Paper." : "You lose! Paper beats Rock.";
-            }else{
-                return "Enter a valid word";
-            }
-        }
-
-    
-
-        function game(){
-            let round = 0;
-            let playerScore = 0;
-            let computerScore = 0;         
-            
-            while(round < 5){
-            
-            let jugada = prompt("Rock, Paper or Scissors?").toUpperCase();
-            let bot = computerPlay();
-            let result = playRound(jugada, bot);
-            alert(result);
-
-            let str = result.slice(4,7);
-            if (str == "win"){
-                playerScore++;
-            }else if(str == "los"){
-                computerScore++;
-            }
-
-            alert(`Your score: ${playerScore} \n Bot's score: ${computerScore}`);
-
-            round++;
-            }
-            
-            if(playerScore > computerScore){
-                alert("You've won the game!");
-            }else if(computerScore > playerScore){
-                alert("Game over! Bot has won the game.");
-            }else{
-                alert("There's no winner, try again.");
-            }
-        }
-
-        game();
 
 
        
