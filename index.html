@@ -4,39 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Piedra Papel o Tijeras</title>
+    <title>Rock Paper Scissors Game</title>
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Asap:400,500,700');
+    
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: #24272E;
+    }
+
+    header {
+        background-color: white;
+    }
+
+    header > h1 {
+        color: #25272E;
+        font-family: Asap, Helvetica, sans-serif;
+        text-align: center;
+    }
+
+    .score-board {
+        margin: 20px auto;
+        border: 3px solid white;
+        border-radius: 4px;
+        text-align: center;
+        width: 200px;
+        color: white;
+        font-size: 46px;
+        padding: 15px 20px;
+        font-family: Asap, Helvetica, sans-serif;
+        position: relative;
+    }
+
+    .badge {
+        background-color: #E25040;
+        color: white;
+        font-family: Asap, Helvetica, sans-serif;
+        font-size: 14px;
+        padding: 2px 10 px;
+    }
+
+    #user-label {
+        position: absolute;
+        top: 30px;
+        left: -20px;
+    }
+
+    #bot-label {
+        position: absolute;
+        top: 30px;
+        right: -15px;
+    }
+
+    .result {
+        font-size: 46px;
+        color: white;
+    }
+
+    .result > p {
+        text-align: center;
+        font-weight: bold;
+        font-family: Asap, Helvetica, sans-serif;
+    }
+
+    .choices {
+        margin: 50px 0;
+        text-align: center;
+    }
+    
+    </style>
 </head>
 <body>
-    <div>
-        <center>
-            <button id="rock" onclick="playRound(0)">ROCK</button>
-            <button id="paper" onclick="playRound(1)">PAPER</button>
-            <button id="scissors" onclick="playRound(2)">SCISSORS</button>
-        </center>
+    <header>
+        <h1>ROCK PAPER AND SCISSORS</h1>
+    </header>
+    <div class="score-board">
+        <div id="user-label" class="badge">User</div>
+        <div id="bot-label" class="badge">Bot</div>
+        <span id="user-score">0</span>:<span id="bot-score">0</span>
     </div>
-    <div id="resultado">
+    
+    <div class="result">
 
     </div>
-    <div>
-        <center>
-            <h3 id="h3" style="font-family: Arial, Helvetica, sans-serif; color: blue">
-
-            </h3>
-    </div>
-    <div>
-        <h3 id="puntaje">
-
-        </h3>
+    <div class="choices">
+        <div class="choice">
+            <button id="r">ROCK</button>
+            <button id="p">PAPER</button>
+            <button id="s">SCISSORS</button>
+        </div>
     </div>
     <script>
+        let userScore = 0;
+        let botScore = 0;
+        const userScore_span = document.getElementById('user-score');
+        const botScore_span = document.getElementById('bot-score');
+        const scoreBoard_div = document.querySelectorAll('.score-board');
+        const result = document.querySelector('.result');
+        let   para = document.createElement('p');
+        result.appendChild(para);
+        const rock_div = document.getElementById('r');
+        const paper_div = document.getElementById('p');
+        const scissors_div = document.getElementById('s');
 
-        let div = document.getElementById('resultado');
-        let resultado = document.getElementById('h3');
+        function win(){
+            userScore++;
+            userScore_span.innerHTML = userScore;
+            botScore_span.innerHTML = botScore;
+            if(userScore == 5){
+                alert("Congratulations! You've won the game!");
+            }
+        }
 
-        let You = 0;
-        let bot = 0;
+        function lose(){
+            botScore++;
+            botScore_span.innerHTML = botScore;
+            userScore_span.innerHTML = userScore;
+            if (botScore == 5){
+                alert("GAME OVER! you've lost the game:(");
+            }
+        }
 
-        let 
+
+        let aqui = document.createElement('p');
+        aqui.setAttribute('style', 'text-align: center; font-weight: bold; font-family: Asap, Helvetica, sans-serif');
+        result.appendChild(aqui);
+
         function playRound(obj) {
             let objetos = ["Rock", "Paper", "Scissors"];
 
@@ -46,17 +144,48 @@
                 ["You lose! Rock beats Scissors", "You win! Scissors beats Paper","It's a tie!"]
             ];
 
-            
            
             let enemigo = Math.floor(Math.random()*3);
 
-            resultado.textContent =  show[obj][enemigo];
+            let resultado = show[obj][enemigo];
+
+            switch (resultado){
+                case "You win! Rock beats Scissors":
+                case "You win! Paper beats Rock":
+                case "You win! Scissors beats Paper":
+                para.innerHTML = resultado;
+                win();
+                break;
+
+                case "You lose! Paper beats Rock":
+                case "You lose! Scissors beats Paper":
+                case "You lose! Rock beats Scissors":
+                para.innerHTML = resultado;
+                lose();
+                break;
+
+                case "It's a tie!":
+
+                para.innerHTML = resultado;
+                break;
+            }
         }
 
+        function main(){
+            rock_div.addEventListener('click', function() {
+                playRound(0);
+            });
 
+            paper_div.addEventListener('click', function() {
+                playRound(1);
+            });
 
+            scissors_div.addEventListener('click', function() {
+                playRound(2);
+            });
+        }
 
-       
+        main();
     </script>
 </body>
 </html>
